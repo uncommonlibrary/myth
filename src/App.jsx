@@ -1,5 +1,10 @@
 import { useState, useEffect } from "react";
+import { Route, Routes } from "react-router-dom";
 import "./App.css";
+import Navbar from "./components/Navbar/Navbar";
+import HomePage from "./pages/HomePage/HomePage";
+import LibraryPage from "./pages/LibraryPage/LibraryPage";
+import TBRPage from "./pages/TBRPage/TBRPage";
 
 export async function getData() {
   const BASE_URL = "https://openlibrary.org/search.json?q=kazuo+ishiguro";
@@ -18,7 +23,7 @@ export async function getData() {
   }
 }
 
-function App() {
+export default function App() {
   const [book, setBook] = useState({});
 
   const loadBook = async () => {
@@ -30,12 +35,21 @@ function App() {
     loadBook();
   }, []);
 
+  //INSERT COMPONENTS BELOW
   return (
     <>
-      <h1>Author: {JSON.stringify(book.docs)}</h1>
+      <h1>MYTH</h1>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<h1>Main</h1>} />
+        <Route path="/home" element={<HomePage />} />
+        <Route path="/shelves/library" element={<LibraryPage />} />
+        <Route path="/shelves/tbr" element={<TBRPage />} />
+        {/*MISSING SEARCH RESULTS PAGE - to be added later */}
+        {/*MISSING JOURNAL PAGE - to be added later if possible */}
+      </Routes>
+      {/* <h1>Author: {JSON.stringify(book.docs)}</h1> */}
       <h2>Number: {book.numFound}</h2>
     </>
   );
 }
-
-export default App;
