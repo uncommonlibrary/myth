@@ -2,9 +2,12 @@ import { useState, useEffect } from "react";
 import { Route, Routes } from "react-router-dom";
 import "./App.css";
 import Navbar from "./components/Navbar/Navbar";
+/* PAGES */
+import MainPage from "./pages/MainPage/MainPage";
 import HomePage from "./pages/HomePage/HomePage";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import TBRPage from "./pages/TBRPage/TBRPage";
+import LoginPage from "./pages/LoginPage/LoginPage";
 
 export async function getData() {
   const BASE_URL = "https://openlibrary.org/search.json?q=kazuo+ishiguro";
@@ -39,9 +42,9 @@ export default function App() {
   return (
     <>
       <h1>MYTH</h1>
-      <Navbar />
       <Routes>
-        <Route path="/" element={<h1>Main</h1>} />
+        <Route path="/" element={<MainPage />} />
+        <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
