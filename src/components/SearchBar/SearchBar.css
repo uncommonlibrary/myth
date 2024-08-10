@@ -1,0 +1,23 @@
+.wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+#searchIcon {
+    height: 1.5rem;
+    width: 1.5rem;
+    padding: 4px;
+    position: absolute;
+    box-sizing: border-box; /*padding and border are included within the element's specified width and height*/
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%); /* Ensures the icon doesn't interfere with input interaction */
+    pointer-events: none;
+}
+
+input {
+    height: 30px;
+    box-sizing: border-box;
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+}

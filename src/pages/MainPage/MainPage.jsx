@@ -1,4 +1,5 @@
 import StartingNav from "../../components/Navbar/StartingNav";
+import { Link } from "react-router-dom";
 
 export default function MainPage() {
   return (
@@ -7,7 +8,9 @@ export default function MainPage() {
       <h1>Maintain your own library and share them with friends.</h1>
       <h3>A simple reading web app for readers who just want to log stuff.</h3>
       <h3>No clunk. Just books.</h3>
-      <button>Get started</button>
+      <button>
+        <Link to="/login">Get started</Link>
+      </button>
       <div className="features">
         <div id="feature1">
           <p>image</p>
