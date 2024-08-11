@@ -24,7 +24,7 @@ export default function LoginPage() {
         },
         body: JSON.stringify({
           fields: {
-            Name: userName.name,
+            name: userName.name,
           },
         }),
       });
@@ -34,7 +34,7 @@ export default function LoginPage() {
 
       const json = await response.json();
       console.log("User saved:", json);
-      navigate("/home" /*,{ state: { name: userName.name } }*/);
+      navigate("/home", { state: { name: userName.name } });
     } catch (error) {
       console.error(error.message);
     }
@@ -54,8 +54,8 @@ export default function LoginPage() {
         </label>
         <br />
         <input
-          id="Name"
-          name="Name"
+          id="name"
+          name="name"
           type="text"
           value={userName.name}
           onChange={handleChange}

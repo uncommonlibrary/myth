@@ -1,6 +1,7 @@
 import "./SearchBar.css";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom"
+import { useNavigate } from "react-router-dom";
+import { getData } from "../../services/searchService";
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
@@ -10,10 +11,11 @@ export default function SearchBar() {
     setQuery(event.target.value);
   };
 
-  const handleSubmit = (event) => {
+  const handleSubmit = async (event) => {
     event.preventDefault();
-    navigate("/search");
-  }
+    const results = await getData(query);
+    navigate(`/search?q=${query.toLowerCase().replace(/ /g, "+")}`, { state: { results } });
+  };
   return (
     <>
       <form onSubmit={handleSubmit}>

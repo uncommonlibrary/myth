@@ -25,7 +25,7 @@ export default function HomePage() {
 
         const json = await response.json();
         const records = json.records;
-        setName(records[0].fields.Name);
+        setName(records[0].fields.name);
       } catch (error) {
         console.error(error.message);
       }
