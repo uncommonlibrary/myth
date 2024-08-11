@@ -52,7 +52,7 @@ export default function App() {
         {/*MISSING SEARCH RESULTS PAGE - to be added later */}
         {/*MISSING JOURNAL PAGE - to be added later if possible */}
       </Routes>
-      {/* <h1>Author: {JSON.stringify(book.docs)}</h1> */}
+      {/* <h1>Author: {JSON.stringify(result.docs)}</h1> */}
       <h2>Number: {book.numFound}</h2>
     </>
   );
