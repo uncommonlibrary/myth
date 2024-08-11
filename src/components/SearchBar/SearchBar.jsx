@@ -1,15 +1,22 @@
 import "./SearchBar.css";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom"
 
 export default function SearchBar() {
   const [query, setQuery] = useState("");
+  const navigate = useNavigate();
 
   const handleChange = (event) => {
     setQuery(event.target.value);
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    navigate("/search");
+  }
   return (
     <>
-      <form>
+      <form onSubmit={handleSubmit}>
         <div className="wrapper">
           <label htmlFor="search-bar">
             <input

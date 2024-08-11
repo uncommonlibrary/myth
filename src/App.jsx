@@ -4,6 +4,7 @@ import "./App.css";
 /* PAGES */
 import MainPage from "./pages/MainPage/MainPage";
 import HomePage from "./pages/HomePage/HomePage";
+import SearchPage from "./pages/SearchPage/SearchPage";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import TBRPage from "./pages/TBRPage/TBRPage";
 import LoginPage from "./pages/LoginPage/LoginPage";
@@ -45,6 +46,7 @@ export default function App() {
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
+        <Route path="/search" element={<SearchPage />} />
         <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
         {/*MISSING SEARCH RESULTS PAGE - to be added later */}
