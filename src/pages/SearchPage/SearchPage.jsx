@@ -38,7 +38,7 @@ export default function SearchPage() {
           <button>Add to Library</button>
         </>
       ) : (
-        <p>Loading...</p>
+        <p>Searching...</p>
       )}
     </>
   );

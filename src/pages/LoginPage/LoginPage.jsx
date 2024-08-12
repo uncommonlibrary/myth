@@ -1,16 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
-const initialState = {
-  name: "",
-};
-
 const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
 const urlKey =
   "patEpEsxTz3CTwZIw.bc945ee535bb3b899ca5312e1fc695491b658d07e020efe888aff4a1ba4f518c";
 
 export default function LoginPage() {
-  const [userName, setUserName] = useState(initialState);
+  const [userName, setUserName] = useState({ name: "" });
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -54,7 +50,6 @@ export default function LoginPage() {
         </label>
         <br />
         <input
-          id="name"
           name="name"
           type="text"
           value={userName.name}

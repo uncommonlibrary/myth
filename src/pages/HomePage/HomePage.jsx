@@ -9,6 +9,7 @@ const urlKey =
 export default function HomePage() {
   const [name, setName] = useState("reader");
 
+
   useEffect(() => {
     const displayName = async () => {
       try {
@@ -25,7 +26,10 @@ export default function HomePage() {
 
         const json = await response.json();
         const records = json.records;
+        console.log("Fetched records:", records);
+        console.log("Last record:", records[0]);
         setName(records[0].fields.name);
+        console.log("Updated name:", records[0].fields.name);
       } catch (error) {
         console.error(error.message);
       }

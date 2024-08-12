@@ -23,7 +23,7 @@ export default function SearchBar() {
           <label htmlFor="search-bar">
             <input
               type="text"
-              placeholder="Search"
+              placeholder="Search title or author"
               value={query}
               onChange={handleChange}
             />
