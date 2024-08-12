@@ -44,7 +44,7 @@ export default function SearchPage() {
                 editionKey: book.edition_key[0],
                 title: book.title,
                 author: book.author_name?.[0],
-                cover: book.cover_edition_key,
+                coverEditionKey: book.cover_edition_key,
               },
             },
           ],
