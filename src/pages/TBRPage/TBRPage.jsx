@@ -25,8 +25,9 @@ export default function TBRPage() {
 
         const json = await response.json();
         const records = json.records;
-        setBooks(records);
-        console.log(records);
+        const tbrBooks = records.filter((record) => record.fields.location === "tbr")
+        setBooks(tbrBooks);
+        console.log("Shelf:", records);
       } catch (error) {
         console.error(error.message);
       }
@@ -42,6 +43,7 @@ export default function TBRPage() {
   const handleMoveToLibrary = async (recordID) => {
     console.log("book ID:", recordID)
     await moveToLibrary(recordID);
+    setBooks(books.filter((book) => book.id !== recordID));
   }
 
   return (
