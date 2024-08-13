@@ -1,0 +1,9 @@
+{
+  "version": "1",
+  "name": "Myth App",
+  "type": "collection",
+  "ignore": [
+    "node_modules",
+    ".git"
+  ]
+}

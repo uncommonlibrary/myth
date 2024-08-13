@@ -1,0 +1,27 @@
+meta {
+  name: Move to Library
+  type: http
+  seq: 2
+}
+
+patch {
+  url: https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201/recWzLM2hMIbhfUJy
+  body: json
+  auth: bearer
+}
+
+headers {
+  Authorization: 
+}
+
+auth:bearer {
+  token: patEpEsxTz3CTwZIw.bc945ee535bb3b899ca5312e1fc695491b658d07e020efe888aff4a1ba4f518c
+}
+
+body:json {
+  {
+    "fields": {
+      "location": "library"
+    }
+  }
+}

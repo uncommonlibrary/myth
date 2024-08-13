@@ -20,6 +20,7 @@ export async function addToTBR(book) {
               title: book.title,
               author: book.author_name?.[0],
               coverEditionKey: book.cover_edition_key,
+              location: "tbr",
             },
           },
         ],
@@ -35,10 +36,8 @@ export async function addToTBR(book) {
 
 //this is to delete books from TBR shelf. This is used in TBR page to remove books.
 export async function deleteFromTBR(recordID) {
-
-  console.log("deleted");
   try {
-    const response = await fetch(`https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201?records[]=${recordID}`, {
+    const response = await fetch(`${url}/${recordID}`, {
       method: "DELETE",
       headers: {
         Authorization: `Bearer ${urlKey}`,
@@ -53,3 +52,31 @@ export async function deleteFromTBR(recordID) {
     console.error(error.message);
   }
 }
+
+//shift book to library
+export async function moveToLibrary(recordID) {
+  try {
+    const response = await fetch(`${url}/${recordID}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${urlKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fields: {
+          location: "library",
+        },
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    await response.json();
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
+//update location
+//airtable filter location to display books in library
+//have each result show more details in another page

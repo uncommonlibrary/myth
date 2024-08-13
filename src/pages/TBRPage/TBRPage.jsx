@@ -1,7 +1,7 @@
 import Navbar from "../../components/Navbar/Navbar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
-import { deleteFromTBR } from "../../services/tbrService";
+import { deleteFromTBR, moveToLibrary } from "../../services/tbrService";
 
 const urlTBR = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyTBR =
@@ -37,8 +37,13 @@ export default function TBRPage() {
 
   const handleDelete = async (recordID) => {
     setBooks(books.filter((book) => book.id !== recordID));
-    await deleteFromTBR(recordID);
+    await deleteFromTBR(recordID); //this deletes from TBR airtable
   };
+
+  const handleMoveToLibrary = async (recordID) => {
+    console.log("book ID:", recordID)
+    await moveToLibrary(recordID);
+  }
 
   return (
     <>
@@ -50,7 +55,7 @@ export default function TBRPage() {
           <div key={book.fields.editionKey}>
             <h2>Title: {book.fields.title}</h2>
             <h3>Author: {book.fields.author}</h3>
-            <button>Move to Library</button>
+            <button onClick={() => handleMoveToLibrary(book.id)}>Move to Library</button>
             <button onClick={() => handleDelete(book.id)}>Delete</button>
           </div>
         ))}
