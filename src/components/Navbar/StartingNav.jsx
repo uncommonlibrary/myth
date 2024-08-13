@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import "./Navbar.css";
 
-export default function StartingNav () {
+export default function StartingNav() {
   return (
     <nav>
       <ul>
@@ -14,4 +14,4 @@ export default function StartingNav () {
       </ul>
     </nav>
   );
-};
+}

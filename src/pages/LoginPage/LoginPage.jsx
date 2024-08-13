@@ -2,8 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
-const urlKey =
-  "patEpEsxTz3CTwZIw.bc945ee535bb3b899ca5312e1fc695491b658d07e020efe888aff4a1ba4f518c";
+const urlKey = `${import.meta.env.VITE_APIKEY}`;
 
 export default function LoginPage() {
   const [userName, setUserName] = useState({ name: "" });

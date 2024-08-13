@@ -4,8 +4,7 @@ import { useState, useEffect } from "react";
 import { deleteFromTBR, moveToLibrary } from "../../services/tbrService";
 
 const urlTBR = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
-const urlKeyTBR =
-  "patEpEsxTz3CTwZIw.bc945ee535bb3b899ca5312e1fc695491b658d07e020efe888aff4a1ba4f518c";
+const urlKeyTBR = `${import.meta.env.VITE_APIKEY}`;
 
 export default function TBRPage() {
   const [books, setBooks] = useState([]);
