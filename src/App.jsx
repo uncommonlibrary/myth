@@ -4,6 +4,7 @@ import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
+import BookDetailsPage from "./pages/BookDetailsPage/BookDetailsPage";
 import TBRPage from "./pages/TBRPage/TBRPage";
 import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import ArchivePage from "./pages/ArchivePage/ArchivePage";
@@ -30,6 +31,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
+        <Route path="/book/:editionkey" element={<BookDetailsPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
         <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/archive" element={<ArchivePage />} />
