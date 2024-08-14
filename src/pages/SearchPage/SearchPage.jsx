@@ -43,13 +43,11 @@ export default function SearchPage() {
           <h2>Found {result.numFound} result(s)</h2>
           {/* <h2>Title: {result.docs[0]?.title}</h2>
           <h2>Author: {result.docs[0]?.author_name?.[0]}</h2> */}
-          {result.docs.map((book) => (
-            <div key={book.edition_key[0]}>
+          {result.docs.map((book, index) => (
+            <div key={index}>
               <h3>Title: {book.title}</h3>
               <h4>Author: {book.author_name?.[0]}</h4>
-              <button onClick={() => handleAddBookToTBR(book)}>
-                Add to TBR
-              </button>
+              <button onClick={() => handleAddBookToTBR(book)}>Add to TBR</button>
               <button onClick={() => handleAddBookToLibrary(book)}>Add to Library</button>
             </div>
           ))}

@@ -39,7 +39,7 @@ export default function LibraryPage() {
 
   const handleDelete = async (recordID) => {
     setBooks(books.filter((book) => book.id !== recordID));
-    await deleteFromTBR(recordID); //this deletes from TBR airtable
+    await deleteFromTBR(recordID); //this deletes from Shelves Airtable
   };
 
   return (
