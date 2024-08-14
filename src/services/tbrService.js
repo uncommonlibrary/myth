@@ -76,6 +76,37 @@ export async function moveToLibrary(recordID) {
   }
 }
 
+//add book to library from search result page
+export async function addToLibrary(book) {
+  try {
+    const response = await fetch(url, {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${urlKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        records: [
+          {
+            fields: {
+              editionKey: book.edition_key[0],
+              title: book.title,
+              author: book.author_name?.[0],
+              coverEditionKey: book.cover_edition_key,
+              location: "library",
+            },
+          },
+        ],
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 //update location
 //airtable filter location to display books in library
 //have each result show more details in another page

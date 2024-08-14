@@ -49,7 +49,6 @@ export default function App() {
         <Route path="/search" element={<SearchPage />} />
         <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
-        {/*MISSING SEARCH RESULTS PAGE - to be added later */}
         {/*MISSING JOURNAL PAGE - to be added later if possible */}
       </Routes>
       {/* <h1>Author: {JSON.stringify(result.docs)}</h1> */}

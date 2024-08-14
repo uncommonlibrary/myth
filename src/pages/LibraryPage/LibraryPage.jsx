@@ -48,8 +48,8 @@ export default function LibraryPage() {
       <SearchBar />
       <h1>Your Library</h1>
       <>
-        {books.map((book) => (
-          <div key={book.fields.editionKey}>
+        {books.map((book, index) => (
+          <div key={index}>
             <h2>Title: {book.fields.title}</h2>
             <h3>Author: {book.fields.author}</h3>
             <button>Mark as Read</button>

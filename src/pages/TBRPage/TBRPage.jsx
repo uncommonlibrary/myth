@@ -54,8 +54,8 @@ export default function TBRPage() {
       <SearchBar />
       <h1>TBR Shelf</h1>
       <>
-        {books.map((book) => (
-          <div key={book.fields.editionKey}>
+        {books.map((book, index) => (
+          <div key={index}>
             <h2>Title: {book.fields.title}</h2>
             <h3>Author: {book.fields.author}</h3>
             <button onClick={() => handleMoveToLibrary(book.id)}>Move to Library</button>

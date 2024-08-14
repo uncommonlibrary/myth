@@ -3,7 +3,7 @@ import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { getData } from "../../services/searchService.js";
 import { useLocation } from "react-router-dom";
-import { addToTBR } from "../../services/tbrService.js";
+import { addToTBR, addToLibrary } from "../../services/tbrService.js";
 
 export default function SearchPage() {
   const [result, setResult] = useState({});
@@ -24,39 +24,13 @@ export default function SearchPage() {
     loadResult();
   }, [location.search]);
 
-  //this should send selected book to TBR shelf in airtable
-  // const handleAddToTBR = async (book) => {
-  //   try {
-  //     const response = await fetch(url, {
-  //       method: "POST",
-  //       headers: {
-  //         Authorization: `Bearer ${urlKey}`,
-  //         "Content-Type": "application/json",
-  //       },
-  //       body: JSON.stringify({
-  //         records: [
-  //           {
-  //             fields: {
-  //               editionKey: book.edition_key[0],
-  //               title: book.title,
-  //               author: book.author_name?.[0],
-  //               coverEditionKey: book.cover_edition_key,
-  //             },
-  //           },
-  //         ],
-  //       }),
-  //     });
-  //     if (!response.ok) {
-  //       throw new Error(`Response status: ${response.status}`);
-  //     }
-  //   } catch (error) {
-  //     console.error(error.message);
-  //   }
-  // };
-
   const handleAddBookToTBR = async (book) => {
     await addToTBR(book);
   };
+
+    const handleAddBookToLibrary = async (book) => {
+      await addToLibrary(book);
+    };
 
   return (
     <>
@@ -76,7 +50,7 @@ export default function SearchPage() {
               <button onClick={() => handleAddBookToTBR(book)}>
                 Add to TBR
               </button>
-              <button>Add to Library</button>
+              <button onClick={() => handleAddBookToLibrary(book)}>Add to Library</button>
             </div>
           ))}
         </>
