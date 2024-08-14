@@ -2,6 +2,28 @@
 const url = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
 
+//fetches all books from shelves airtable
+export async function fetchAllBooks() {
+  try {
+    const response = await fetch(url, {
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${urlKey}`,
+      },
+    });
+
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+
+    const json = await response.json();
+    const records = json.records;
+    return records;
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 //this is to add books to TBR shelf. this function is used in Search Results page.
 export async function addToTBR(book) {
   try {

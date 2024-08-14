@@ -65,7 +65,7 @@ export default function ArchivePage() {
           ))}
         </>
       ) : (
-        <p>Nothing here!</p>
+        <p>Read more to populate this space!</p>
       )}
     </>
   );

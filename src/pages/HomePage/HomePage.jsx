@@ -1,13 +1,19 @@
 import Navbar from "../../components/Navbar/Navbar";
 import SearchBar from "../../components/SearchBar/SearchBar";
+import { fetchAllBooks } from "../../services/tbrService";
+import ArchiveShelf from "../../components/ArchiveShelf/ArchiveShelf";
+import TBRShelf from "../../components/TBRShelf/TBRShelf";
+import LibraryShelf from "../../components/LibraryShelf/LibraryShelf";
 import { useEffect, useState } from "react";
 
-const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
+const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201"; //url for user name
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
 
 export default function HomePage() {
   const [name, setName] = useState("reader");
+  const [books, setBooks] = useState([]);
 
+  //fetching user's name
   useEffect(() => {
     const displayName = async () => {
       try {
@@ -37,18 +43,32 @@ export default function HomePage() {
     displayName();
   }, []);
 
+  useEffect(() => {
+    const displayBooks = async () => {
+      const data = await fetchAllBooks();
+      console.log("All Books", data);
+      const shelves = {
+        library: data.filter((book) => book.fields.location === "library"),
+        tbr: data.filter((book) => book.fields.location === "tbr"),
+        archive: data.filter((book) => book.fields.location === "archive"),
+      };
+      setBooks(shelves);
+    };
+    displayBooks();
+  }, []);
+
   return (
     <>
       <Navbar />
       <SearchBar />
       <h1>Welcome, {name}!</h1>
       <h3>What are you reading today?</h3>
-      <h2>Your Library</h2>
-      <p>books here</p>
-      <h2>TBR Shelf</h2>
-      <p>books here</p>
-      <h2>Your Achive</h2>
-      <p>read books here</p>
+      <h1>Your Library</h1>
+      <LibraryShelf books={books.library} />
+      <h1>TBR Shelf</h1>
+      <TBRShelf books={books.tbr} />
+      <h1>Your Archive</h1>
+      <ArchiveShelf books={books.archive} />
     </>
   );
 }

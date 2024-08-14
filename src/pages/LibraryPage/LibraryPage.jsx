@@ -8,8 +8,6 @@ const urlKeyLibrary = `${import.meta.env.VITE_APIKEY}`;
 
 export default function LibraryPage() {
   const [books, setBooks] = useState([]);
-  // const [isRead, setIsRead] = useState(false);
-  // const [isDeleted, setIsDeleted] = useState(false);
   const [bookStatus, setBookStatus] = useState({});
 
   useEffect(() => {
