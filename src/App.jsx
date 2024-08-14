@@ -31,7 +31,7 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/book/:editionkey" element={<BookDetailsPage />} />
+        <Route path="/book/:key" element={<BookDetailsPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
         <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/archive" element={<ArchivePage />} />

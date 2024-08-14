@@ -33,8 +33,8 @@ export default function SearchPage() {
       await addToLibrary(book);
     };
 
-  const handleMoreInfo = (editionKey) => {
-    navigate(`/book/${editionKey}`);
+  const handleMoreInfo = (key) => {
+    navigate(`/book/${encodeURIComponent(key)}`); //need this encodeURIcomponent to remove the extra slash from key
   }
 
   return (
@@ -52,7 +52,7 @@ export default function SearchPage() {
               <h4>Author: {book.author_name?.[0]}</h4>
               <button onClick={() => handleAddBookToTBR(book)}>Add to TBR</button>
               <button onClick={() => handleAddBookToLibrary(book)}>Add to Library</button>
-              <button onClick={() => handleMoreInfo(book.edition_key[0])}>More Info</button>
+              <button onClick={() => handleMoreInfo(book.key)}>More Info</button>
             </div>
           ))}
         </>
