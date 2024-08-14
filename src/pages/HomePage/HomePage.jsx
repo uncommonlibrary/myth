@@ -47,6 +47,8 @@ export default function HomePage() {
       <p>books here</p>
       <h2>TBR Shelf</h2>
       <p>books here</p>
+      <h2>Your Achive</h2>
+      <p>read books here</p>
     </>
   );
 }

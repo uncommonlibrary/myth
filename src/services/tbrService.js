@@ -107,6 +107,30 @@ export async function addToLibrary(book) {
   }
 }
 
+//when books are marked as read, they are moved to archive. this appears in library page.
+export async function moveToArchive(recordID) {
+  try {
+    const response = await fetch(`${url}/${recordID}`, {
+      method: "PATCH",
+      headers: {
+        Authorization: `Bearer ${urlKey}`,
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        fields: {
+          location: "archive",
+        },
+      }),
+    });
+    if (!response.ok) {
+      throw new Error(`Response status: ${response.status}`);
+    }
+    await response.json();
+  } catch (error) {
+    console.error(error.message);
+  }
+}
+
 //update location
 //airtable filter location to display books in library
 //have each result show more details in another page

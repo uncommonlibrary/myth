@@ -8,6 +8,7 @@ const urlKeyTBR = `${import.meta.env.VITE_APIKEY}`;
 
 export default function TBRPage() {
   const [books, setBooks] = useState([]);
+  const [bookStatus, setBookStatus] = useState({});
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -38,31 +39,47 @@ export default function TBRPage() {
   }, []);
 
   const handleDelete = async (recordID) => {
-    setBooks(books.filter((book) => book.id !== recordID));
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [recordID]: { ...prevStatus[recordID], isDeleted: true },
+    }));
     await deleteFromTBR(recordID); //this deletes from TBR airtable
+    setBooks(books.filter((book) => book.id !== recordID));
   };
 
   const handleMoveToLibrary = async (recordID) => {
-    console.log("book ID:", recordID)
+    console.log("book ID:", recordID);
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [recordID]: { ...prevStatus[recordID], isReading: true },
+    }));
     await moveToLibrary(recordID);
     setBooks(books.filter((book) => book.id !== recordID));
-  }
+  };
 
   return (
     <>
       <Navbar />
       <SearchBar />
       <h1>TBR Shelf</h1>
-      <>
-        {books.map((book, index) => (
-          <div key={index}>
-            <h2>Title: {book.fields.title}</h2>
-            <h3>Author: {book.fields.author}</h3>
-            <button onClick={() => handleMoveToLibrary(book.id)}>Move to Library</button>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
-          </div>
-        ))}
-      </>
+      {books.length > 0 ? (
+        <>
+          {books.map((book, index) => (
+            <div key={index}>
+              <h2>Title: {book.fields.title}</h2>
+              <h3>Author: {book.fields.author}</h3>
+              <button onClick={() => handleMoveToLibrary(book.id)}>
+                {bookStatus[book.id]?.isReading ? "Moved to Library!" : "Currently Reading"}
+              </button>
+              <button onClick={() => handleDelete(book.id)}>
+                {bookStatus[book.id]?.isDeleted ? "Deleted!" : "Delete"}
+              </button>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p>*crickets*</p>
+      )}
     </>
   );
 }

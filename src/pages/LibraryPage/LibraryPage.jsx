@@ -1,13 +1,16 @@
 import Navbar from "../../components/Navbar/Navbar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
-import { deleteFromTBR } from "../../services/tbrService";
+import { deleteFromTBR, moveToArchive } from "../../services/tbrService";
 
 const urlLibrary = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyLibrary = `${import.meta.env.VITE_APIKEY}`;
 
 export default function LibraryPage() {
   const [books, setBooks] = useState([]);
+  // const [isRead, setIsRead] = useState(false);
+  // const [isDeleted, setIsDeleted] = useState(false);
+  const [bookStatus, setBookStatus] = useState({});
 
   useEffect(() => {
     const fetchBooks = async () => {
@@ -37,9 +40,23 @@ export default function LibraryPage() {
     fetchBooks();
   }, []);
 
-  const handleDelete = async (recordID) => {
+  const handleMoveToArchive = async (recordID) => {
+    console.log("book ID:", recordID);
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [recordID]: { ...prevStatus[recordID], markedAsRead: true },
+    })); //this must come first or it wont transition properly
+    await moveToArchive(recordID);
     setBooks(books.filter((book) => book.id !== recordID));
+  };
+
+  const handleDelete = async (recordID) => {
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [recordID]: { ...prevStatus[recordID], isDeleted: true },
+    }));
     await deleteFromTBR(recordID); //this deletes from Shelves Airtable
+    setBooks(books.filter((book) => book.id !== recordID));
   };
 
   return (
@@ -47,16 +64,26 @@ export default function LibraryPage() {
       <Navbar />
       <SearchBar />
       <h1>Your Library</h1>
-      <>
-        {books.map((book, index) => (
-          <div key={index}>
-            <h2>Title: {book.fields.title}</h2>
-            <h3>Author: {book.fields.author}</h3>
-            <button>Mark as Read</button>
-            <button onClick={() => handleDelete(book.id)}>Delete</button>
-          </div>
-        ))}
-      </>
+      {books.length > 0 ? (
+        <>
+          {books.map((book, index) => (
+            <div key={index}>
+              <h2>Title: {book.fields.title}</h2>
+              <h3>Author: {book.fields.author}</h3>
+              <button onClick={() => handleMoveToArchive(book.id)}>
+                {bookStatus[book.id]?.markedAsRead
+                  ? "Moved to Archive!"
+                  : "Mark as Read"}
+              </button>
+              <button onClick={() => handleDelete(book.id)}>
+                {bookStatus[book.id]?.isDeleted ? "Deleted!" : "Delete"}
+              </button>
+            </div>
+          ))}
+        </>
+      ) : (
+        <p>Nothing here!</p>
+      )}
     </>
   );
 }
