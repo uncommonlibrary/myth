@@ -12,12 +12,15 @@ export default function LibraryPage() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(urlLibrary, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${urlKeyLibrary}`,
-          },
-        });
+        const response = await fetch(
+          `${urlLibrary}?fields%5B%5D=title&fields%5B%5D=author&filterByFormula=location%3D%22library%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${urlKeyLibrary}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
@@ -25,10 +28,7 @@ export default function LibraryPage() {
 
         const json = await response.json();
         const records = json.records;
-        const libraryBooks = records.filter(
-          (record) => record.fields.location === "library"
-        );
-        setBooks(libraryBooks);
+        setBooks(records);
         console.log("Shelf:", records);
       } catch (error) {
         console.error(error.message);

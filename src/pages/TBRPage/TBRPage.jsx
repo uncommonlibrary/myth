@@ -12,12 +12,15 @@ export default function TBRPage() {
   useEffect(() => {
     const fetchBooks = async () => {
       try {
-        const response = await fetch(urlTBR, {
-          method: "GET",
-          headers: {
-            Authorization: `Bearer ${urlKeyTBR}`,
-          },
-        });
+        const response = await fetch(
+          `${urlTBR}?fields%5B%5D=title&fields%5B%5D=author&filterByFormula=location%3D%22tbr%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
+          {
+            method: "GET",
+            headers: {
+              Authorization: `Bearer ${urlKeyTBR}`,
+            },
+          }
+        );
 
         if (!response.ok) {
           throw new Error(`Response status: ${response.status}`);
@@ -25,8 +28,7 @@ export default function TBRPage() {
 
         const json = await response.json();
         const records = json.records;
-        const tbrBooks = records.filter((record) => record.fields.location === "tbr")
-        setBooks(tbrBooks);
+        setBooks(records);
         console.log("Shelf:", records);
       } catch (error) {
         console.error(error.message);
