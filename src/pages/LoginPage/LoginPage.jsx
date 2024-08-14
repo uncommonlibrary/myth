@@ -5,7 +5,7 @@ const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
 
 export default function LoginPage() {
-  const [userName, setUserName] = useState({ name: "" });
+  const [userName, setUserName] = useState( "" );
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
@@ -19,7 +19,7 @@ export default function LoginPage() {
         },
         body: JSON.stringify({
           fields: {
-            name: userName.name,
+            name: userName,
           },
         }),
       });
@@ -29,14 +29,14 @@ export default function LoginPage() {
 
       const json = await response.json();
       console.log("User saved:", json);
-      navigate("/home", { state: { name: userName.name } });
+      navigate("/home");
     } catch (error) {
       console.error(error.message);
     }
   };
 
   const handleChange = (event) => {
-    setUserName({ ...userName, [event.target.name]: event.target.value });
+    setUserName(event.target.value);
   };
 
   return (
@@ -51,7 +51,7 @@ export default function LoginPage() {
         <input
           name="name"
           type="text"
-          value={userName.name}
+          value={userName}
           onChange={handleChange}
         />
         <br />

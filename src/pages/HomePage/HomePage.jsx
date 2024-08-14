@@ -8,7 +8,6 @@ const urlKey = `${import.meta.env.VITE_APIKEY}`;
 export default function HomePage() {
   const [name, setName] = useState("reader");
 
-
   useEffect(() => {
     const displayName = async () => {
       try {
@@ -16,6 +15,7 @@ export default function HomePage() {
           method: "GET",
           headers: {
             Authorization: `Bearer ${urlKey}`,
+            "Content-Type": "application/json",
           },
         });
 
@@ -25,10 +25,11 @@ export default function HomePage() {
 
         const json = await response.json();
         const records = json.records;
-        console.log("Fetched records:", records);
-        console.log("Last record:", records[0]);
-        setName(records[0].fields.name);
-        console.log("Updated name:", records[0].fields.name);
+        const sortedRecords = records.sort(
+          (a, b) => new Date(b.createdTime) - new Date(a.createdTime)
+        ); //if a is earlier, then number will be positive bc b > a
+        setName(sortedRecords[0].fields.name);
+        console.log("recent record:", sortedRecords[0].fields.name);
       } catch (error) {
         console.error(error.message);
       }

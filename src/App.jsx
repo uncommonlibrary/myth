@@ -5,8 +5,9 @@ import "./App.css";
 import MainPage from "./pages/MainPage/MainPage";
 import HomePage from "./pages/HomePage/HomePage";
 import SearchPage from "./pages/SearchPage/SearchPage";
-import LibraryPage from "./pages/LibraryPage/LibraryPage";
 import TBRPage from "./pages/TBRPage/TBRPage";
+import LibraryPage from "./pages/LibraryPage/LibraryPage";
+import ArchivePage from "./pages/ArchivePage/ArchivePage";
 import LoginPage from "./pages/LoginPage/LoginPage";
 
 export async function getData() {
@@ -47,8 +48,9 @@ export default function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/home" element={<HomePage />} />
         <Route path="/search" element={<SearchPage />} />
-        <Route path="/shelves/library" element={<LibraryPage />} />
         <Route path="/shelves/tbr" element={<TBRPage />} />
+        <Route path="/shelves/library" element={<LibraryPage />} />
+        <Route path="/shelves/archive" element={<ArchivePage />} />
         {/*MISSING JOURNAL PAGE - to be added later if possible */}
       </Routes>
       {/* <h1>Author: {JSON.stringify(result.docs)}</h1> */}
