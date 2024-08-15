@@ -5,6 +5,7 @@ import { deleteFromTBR } from "../../services/tbrService";
 
 const urlArchive = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyArchive = `${import.meta.env.VITE_APIKEY}`;
+const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
 export default function ArchivePage() {
   const [books, setBooks] = useState([]);
@@ -14,7 +15,7 @@ export default function ArchivePage() {
     const fetchBooks = async () => {
       try {
         const response = await fetch(
-          `${urlArchive}?fields%5B%5D=title&fields%5B%5D=author&filterByFormula=location%3D%22archive%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
+          `${urlArchive}?fields%5B%5D=editionKey&fields%5B%5D=title&fields%5B%5D=author&fields%5B%5D=coverImage&fields%5B%5D=location&filterByFormula=location%3D%22archive%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
           {
             method: "GET",
             headers: {
@@ -56,6 +57,7 @@ export default function ArchivePage() {
         <>
           {books.map((book, index) => (
             <div key={index}>
+              <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
               <h2>Title: {book.fields.title}</h2>
               <h3>Author: {book.fields.author}</h3>
               <button onClick={() => handleDelete(book.id)}>

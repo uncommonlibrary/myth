@@ -5,6 +5,7 @@ import { deleteFromTBR, moveToLibrary } from "../../services/tbrService";
 
 const urlTBR = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyTBR = `${import.meta.env.VITE_APIKEY}`;
+const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
 export default function TBRPage() {
   const [books, setBooks] = useState([]);
@@ -14,7 +15,7 @@ export default function TBRPage() {
     const fetchBooks = async () => {
       try {
         const response = await fetch(
-          `${urlTBR}?fields%5B%5D=title&fields%5B%5D=author&filterByFormula=location%3D%22tbr%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
+          `${urlTBR}?fields%5B%5D=editionKey&fields%5B%5D=title&fields%5B%5D=author&fields%5B%5D=coverImage&fields%5B%5D=location&filterByFormula=location%3D%22tbr%22&sort%5B0%5D%5Bfield%5D=title&sort%5B0%5D%5Bdirection%5D=asc`,
           {
             method: "GET",
             headers: {
@@ -66,10 +67,13 @@ export default function TBRPage() {
         <>
           {books.map((book, index) => (
             <div key={index}>
+              <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
               <h2>Title: {book.fields.title}</h2>
               <h3>Author: {book.fields.author}</h3>
               <button onClick={() => handleMoveToLibrary(book.id)}>
-                {bookStatus[book.id]?.isReading ? "Moved to Library!" : "Currently Reading"}
+                {bookStatus[book.id]?.isReading
+                  ? "Moved to Library!"
+                  : "Currently Reading"}
               </button>
               <button onClick={() => handleDelete(book.id)}>
                 {bookStatus[book.id]?.isDeleted ? "Deleted!" : "Delete"}
