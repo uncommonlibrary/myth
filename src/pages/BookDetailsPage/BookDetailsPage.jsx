@@ -6,12 +6,17 @@ import {
   getDataWithEdKey,
 } from "../../services/bookDetailsService";
 import { useLocation } from "react-router-dom";
+import { addToTBR, addToLibrary } from "../../services/tbrService";
 
 const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
 export default function BookDetailsPage() {
   const [bookDetails, setBookDetails] = useState(null);
   const [result, setResult] = useState({ docs: [] });
+  const [bookStatus, setBookStatus] = useState({
+    isAddedToTBR: false,
+    isAddedToLibrary: false,
+  });
   const location = useLocation();
   const editionKey = location.state?.editionKey;
   console.log("EditionKey:", editionKey);
@@ -27,6 +32,7 @@ export default function BookDetailsPage() {
       try {
         const data = await getDataWithEdKey(editionKey);
         setResult(data);
+        console.log("Result:", result);
       } catch (error) {
         console.error(error.message);
         return "No book found";
@@ -47,6 +53,28 @@ export default function BookDetailsPage() {
     getBookDetails(bookId);
   }, [bookId]);
 
+  const handleAddBookToTBR = async (book) => {
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [book.edition_key[0]]: {
+        ...prevStatus[book.edition_key[0]],
+        isAddedToTBR: true,
+      },
+    }));
+    await addToTBR(book);
+  };
+
+  const handleAddBookToLibrary = async (book) => {
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [book.edition_key[0]]: {
+        ...prevStatus[book.edition_key[0]],
+        isAddedToLibrary: true,
+      },
+    }));
+    await addToLibrary(book);
+  };
+
   return (
     <>
       <Navbar />
@@ -62,13 +90,14 @@ export default function BookDetailsPage() {
       </p>
       <p>
         <b>Genre: </b>
-        {result.docs[0]?.subject.slice(0, 5).map((genre, index) => (
-          <div key={index}>
-            {genre}
-            {index < result.docs[0].subject.slice(0, 5).length - 1 && ","}
-          </div>
-        ))}
       </p>
+      {result.docs[0]?.subject.slice(0, 5).map((genre, index) => (
+        <div key={index}>
+          {genre}
+          {index < result.docs[0].subject.slice(0, 5).length - 1 && ","}
+        </div>
+      ))}
+
       <p>
         <b>Average rating: </b>
         {Number(result.docs[0]?.ratings_average).toFixed(2)} out of 5 stars ⭐
@@ -81,8 +110,16 @@ export default function BookDetailsPage() {
         <b>Length: </b>
         {result.docs[0]?.number_of_pages_median}
       </p>
-      <button>Add to TBR</button>
-      <button>Add to Library</button>
+      <button onClick={() => handleAddBookToTBR(result.docs[0])}>
+        {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToTBR
+          ? "Added!"
+          : "Add to TBR"}
+      </button>
+      <button onClick={() => handleAddBookToLibrary(result.docs[0])}>
+        {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToLibrary
+          ? "Added!"
+          : "Add to Library"}
+      </button>
     </>
   );
 }
