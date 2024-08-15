@@ -9,7 +9,7 @@ import { useLocation } from "react-router-dom";
 
 export default function BookDetailsPage() {
   const [bookDetails, setBookDetails] = useState(null);
-  const [result, setResult] = useState({});
+  const [result, setResult] = useState({ docs: [] });
   const location = useLocation();
   const editionKey = location.state?.editionKey;
   console.log("EditionKey:", editionKey);
@@ -50,12 +50,28 @@ export default function BookDetailsPage() {
       <Navbar />
       <SearchBar />
       <h1>Book Details</h1>
-      <h2>Title: {result.docs[0].title}</h2>
-      <h3>Author: {result.docs[0].author_name}</h3>
+      <h2>{result.docs[0]?.title}</h2>
+      <h3>by {result.docs[0]?.author_name}</h3>
       <p>
         {bookDetails?.description?.value ??
           bookDetails?.description ??
           "No description available"}
+      </p>
+      <p>
+        <b>Genre: </b>
+        {result.docs[0]?.subject}
+      </p>
+      <p>
+        <b>Average rating: </b>
+        {result.docs[0]?.ratings_average} out of 5 stars
+      </p>
+      <p>
+        <b>First published: </b>
+        {result.docs[0]?.first_publish_year}
+      </p>
+      <p>
+        <b>Length: </b>
+        {result.docs[0]?.number_of_pages_median}
       </p>
     </>
   );
