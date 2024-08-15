@@ -1,5 +1,6 @@
 const WORKS_URL = "https://openlibrary.org/works/";
 const SEARCH_URL = "https://openlibrary.org/search.json?q=";
+const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
 //bookID here will become my key
 export async function getDescription(bookId) {
@@ -30,4 +31,20 @@ export async function getDataWithEdKey(editionKey) {
     console.error(error.message);
     return "Data not available";
   }
+}
+
+//this is to get book cover photo
+export async function getCoverPhoto(coverKey) {
+    try {
+      const response = await fetch(`${COVER_URL}${coverKey}.jpg`);
+      if (!response.ok) {
+        throw new Error(`Response status: ${response.status}`);
+      }
+
+      const json = await response.json();
+      return json; //need all the other deets: title author published ratings etc
+    } catch (error) {
+      console.error(error.message);
+      return "Data not available";
+    }
 }

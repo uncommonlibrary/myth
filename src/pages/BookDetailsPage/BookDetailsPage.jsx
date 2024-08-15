@@ -7,6 +7,8 @@ import {
 } from "../../services/bookDetailsService";
 import { useLocation } from "react-router-dom";
 
+const COVER_URL = "https://covers.openlibrary.org/b/id/";
+
 export default function BookDetailsPage() {
   const [bookDetails, setBookDetails] = useState(null);
   const [result, setResult] = useState({ docs: [] });
@@ -50,6 +52,7 @@ export default function BookDetailsPage() {
       <Navbar />
       <SearchBar />
       <h1>Book Details</h1>
+      <img src={`${COVER_URL}${result.docs[0]?.cover_i}.jpg`} />
       <h2>{result.docs[0]?.title}</h2>
       <h3>by {result.docs[0]?.author_name}</h3>
       <p>
