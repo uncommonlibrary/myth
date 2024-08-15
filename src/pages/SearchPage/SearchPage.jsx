@@ -8,6 +8,10 @@ import { addToTBR, addToLibrary } from "../../services/tbrService.js";
 export default function SearchPage() {
   const [result, setResult] = useState({});
   const [displayQuery, setDisplayQuery] = useState("");
+  const [bookStatus, setBookStatus] = useState({
+    isAddedToTBR: false,
+    isAddedToLibrary: false,
+  });
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -26,15 +30,32 @@ export default function SearchPage() {
   }, [location.search]);
 
   const handleAddBookToTBR = async (book) => {
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [book.edition_key[0]]: {
+        ...prevStatus[book.edition_key[0]],
+        isAddedToTBR: true,
+      },
+    }));
     await addToTBR(book);
   };
 
+  //here must use book edition key cuz book is fetching from the api not airtable.
   const handleAddBookToLibrary = async (book) => {
+    setBookStatus((prevStatus) => ({
+      ...prevStatus,
+      [book.edition_key[0]]: {
+        ...prevStatus[book.edition_key[0]],
+        isAddedToLibrary: true,
+      },
+    }));
     await addToLibrary(book);
   };
 
   const handleMoreInfo = (key, editionKey) => {
-    navigate(`/book/${encodeURIComponent(key)}`, { state: {editionKey: editionKey} }); //need this encodeURIcomponent to remove the extra slash from key
+    navigate(`/book/${encodeURIComponent(key)}`, {
+      state: { editionKey: editionKey },
+    }); //need this encodeURIcomponent to remove the extra slash from key
   };
 
   return (
@@ -51,10 +72,14 @@ export default function SearchPage() {
               <h3>Title: {book.title}</h3>
               <h4>Author: {book.author_name?.[0]}</h4>
               <button onClick={() => handleAddBookToTBR(book)}>
-                Add to TBR
+                {bookStatus[book.edition_key[0]]?.isAddedToTBR
+                  ? "Added!"
+                  : "Add to TBR"}
               </button>
               <button onClick={() => handleAddBookToLibrary(book)}>
-                Add to Library
+                {bookStatus[book.edition_key[0]]?.isAddedToLibrary
+                  ? "Added!"
+                  : "Add to Library"}
               </button>
               <button
                 onClick={() => handleMoreInfo(book.key, book.edition_key[0])}
