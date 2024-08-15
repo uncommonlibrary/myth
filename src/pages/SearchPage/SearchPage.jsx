@@ -72,14 +72,18 @@ export default function SearchPage() {
               <h3>Title: {book.title}</h3>
               <h4>Author: {book.author_name?.[0]}</h4>
               <button onClick={() => handleAddBookToTBR(book)}>
-                {bookStatus[book.edition_key[0]]?.isAddedToTBR
-                  ? "Added!"
-                  : "Add to TBR"}
+                {book.edition_key && book.edition_key.length > 0
+                  ? bookStatus[book.edition_key[0]]?.isAddedToTBR
+                    ? "Added!"
+                    : "Add to TBR"
+                  : "Loading..."}
               </button>
               <button onClick={() => handleAddBookToLibrary(book)}>
-                {bookStatus[book.edition_key[0]]?.isAddedToLibrary
-                  ? "Added!"
-                  : "Add to Library"}
+                {book.edition_key && book.edition_key.length > 0
+                  ? bookStatus[book.edition_key[0]]?.isAddedToLibrary
+                    ? "Added!"
+                    : "Add to Library"
+                  : "Loading..."}
               </button>
               <button
                 onClick={() => handleMoreInfo(book.key, book.edition_key[0])}
