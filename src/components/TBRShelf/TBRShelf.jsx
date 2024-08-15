@@ -1,5 +1,14 @@
 export default function TBRShelf({books = []}) {
   const COVER_URL = "https://covers.openlibrary.org/b/id/";
+
+    if (books.length === 0) {
+      return (
+        <>
+          <p>Start your reading journey by adding some to-reads!</p>
+        </>
+      );
+    }
+
   return (
     <>
       {books.map((book, index) => (

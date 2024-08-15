@@ -6,7 +6,7 @@ import {
   getDataWithEdKey,
 } from "../../services/bookDetailsService";
 import { useLocation } from "react-router-dom";
-import { addToTBR, addToLibrary } from "../../services/tbrService";
+import { addToTBR, addToLibrary } from "../../services/tbrService.js";
 
 const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
