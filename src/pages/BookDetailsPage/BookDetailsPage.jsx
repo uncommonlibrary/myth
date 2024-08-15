@@ -54,7 +54,7 @@ export default function BookDetailsPage() {
       <h1>Book Details</h1>
       <img src={`${COVER_URL}${result.docs[0]?.cover_i}.jpg`} />
       <h2>{result.docs[0]?.title}</h2>
-      <h3>by {result.docs[0]?.author_name}</h3>
+      <h3>by {result.docs[0]?.author_name[0]}</h3>
       <p>
         {bookDetails?.description?.value ??
           bookDetails?.description ??
