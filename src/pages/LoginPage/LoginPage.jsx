@@ -5,11 +5,16 @@ const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
 
 export default function LoginPage() {
-  const [userName, setUserName] = useState( "" );
+  const [userName, setUserName] = useState("");
+  const [isSubmitted, setIsSubmitted] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (event) => {
     event.preventDefault();
+    setIsSubmitted((prevStatus) => ({
+      ...prevStatus,
+      isSubmitted: true,
+    }));
     try {
       const response = await fetch(url, {
         method: "POST",
@@ -56,7 +61,7 @@ export default function LoginPage() {
         />
         <br />
         <br />
-        <button type="submit">Join</button>
+        <button type="submit">{isSubmitted ? "Submitted!" : "Join"}</button>
       </form>
     </>
   );
