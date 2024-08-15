@@ -1,0 +1,15 @@
+meta {
+  name: Get book with edition key
+  type: http
+  seq: 7
+}
+
+get {
+  url: https://openlibrary.org/search.json?q=OL51817596M
+  body: none
+  auth: none
+}
+
+params:query {
+  q: OL51817596M
+}
