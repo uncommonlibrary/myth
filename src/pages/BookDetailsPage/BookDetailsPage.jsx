@@ -59,11 +59,16 @@ export default function BookDetailsPage() {
       </p>
       <p>
         <b>Genre: </b>
-        {result.docs[0]?.subject}
+        {result.docs[0]?.subject.slice(0, 5).map((genre, index) => (
+          <div key={index}>
+            {genre}
+            {index < result.docs[0].subject.slice(0, 5).length - 1 && ","}
+          </div>
+        ))}
       </p>
       <p>
         <b>Average rating: </b>
-        {result.docs[0]?.ratings_average} out of 5 stars
+        {Number(result.docs[0]?.ratings_average).toFixed(2)} out of 5 stars ⭐
       </p>
       <p>
         <b>First published: </b>
@@ -73,6 +78,8 @@ export default function BookDetailsPage() {
         <b>Length: </b>
         {result.docs[0]?.number_of_pages_median}
       </p>
+      <button>Add to TBR</button>
+      <button>Add to Library</button>
     </>
   );
 }
