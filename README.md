@@ -10,7 +10,7 @@ While some readers might find joy in filling up the post-reading questionnaire a
 
 **Myth - The Book App**
 
-![Screenshot of game's title page](./src/assets/images/title_page_screenshot_myth.png)
+![Screenshot of site's title page](./src/assets/images/title_page_screenshot_myth.png)
 
 Myth targets readers who desire a simplified experience of the book tracking app.
 
@@ -22,11 +22,11 @@ In fulfillment of the second coding bootcamp project to build a React applicatio
 
 ## Getting Started
 
-Begin your reading journey by "logging in" to your account.
+Begin your reading journey by "logging in" to your account and search for books by title or author.
 
 ![Screenshot of search page](./src/assets/images/search_page_screenshot.png)
 
-Search books by title or author and add them to the respective shelves: TBR for to-be-read, library for your current reads, and archive for read books.
+Add titles to the respective shelves: TBR for to-be-read, library for your current reads, and archive for read books, and update when you're done!
 
 ![Screenshot of home page](./src/assets/images/homepage_screenshot.png)
 
