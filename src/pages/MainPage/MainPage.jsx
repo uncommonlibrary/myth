@@ -18,7 +18,10 @@ export default function MainPage() {
       </div>
       <div className="features">
         <div id="feature1">
-          <img src="/src/assets/images/trackreading.png" />
+          <img
+            src="https://www.dropbox.com/scl/fi/ee87102852eux1qfr80gj/trackreading.png?rlkey=jhizi4mzpb5y5917cxxqsu3zz&st=idf5wf37&dl=0"
+            alt="A girl reading"
+          />
           <h2>Track your reading</h2>
           <h3>
             Monitor your reading progress and mark books as read, currently
@@ -26,7 +29,10 @@ export default function MainPage() {
           </h3>
         </div>
         <div id="feature2">
-          <img src="/src/assets/images/write_notes.png" />
+          <img
+            src="https://www.dropbox.com/scl/fi/wwg6e4soqyfrn39u9yto3/write_notes.png?rlkey=mh7cbhlrt1sl9eyu90z3lw0pg&st=9x71swwm&dl=0"
+            alt="A notebook"
+          />
           <h2>Write notes</h2>
           <h3>
             Pen your thoughts and highlights as you read, keeping all your
@@ -34,7 +40,10 @@ export default function MainPage() {
           </h3>
         </div>
         <div id="feature3">
-          <img src="/src/assets/images/sharelibrary.png" />
+          <img
+            src="https://www.dropbox.com/scl/fi/4t3th95velshjieofihtm/sharelibrary.png?rlkey=sv4046lh5g29jsxcjjn8solxh&st=2jgpmayf&dl=0"
+            alt="Two characters trading books"
+          />
           <h2>Share your library</h2>
           <h3>
             Showcase your collection with your friends, and discover what others

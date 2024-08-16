@@ -18,7 +18,6 @@ In addition to tracking your reading progress, Myth desires to provide two more 
 
 In fulfillment of the second coding bootcamp project to build a React application with partial/full CRUD, I have completed one of the features.
 
-
 ## Getting Started
 
 Begin your reading journey by "logging in" to your account.
@@ -27,23 +26,21 @@ Search books by title or author and add them to the respective shelves: TBR for 
 
 See how I planned this game [here](https://miro.com/app/board/uXjVKrudW3Y=/?share_link_id=385691609527).
 
-
 ## Attributions & Credits
 
-* [Tufte.css](https://edwardtufte.github.io/tufte-css/)
-* [Open Library Search API](https://openlibrary.org/dev/docs/api/search)
-* [Airtable](https://airtable.com/)
-* Icons8
-
+- [Tufte.css](https://edwardtufte.github.io/tufte-css/)
+- [Open Library Search API](https://openlibrary.org/dev/docs/api/search)
+- [Airtable](https://airtable.com/)
+- Icons8
 
 ## Technologies Used
-HTML, CSS, JavaScript, React, Airtable
 
+HTML, CSS, JavaScript, React, Airtable
 
 ## Next Steps
 
-* Optimise CSS and code functions
+- Optimise CSS and code functions
 
-* Build note-taking and library-sharing feature
+- Build note-taking and library-sharing feature
 
-* Utilise other Book APIs
+- Utilise other Book APIs
