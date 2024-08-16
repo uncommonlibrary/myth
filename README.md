@@ -10,6 +10,8 @@ While some readers might find joy in filling up the post-reading questionnaire a
 
 **Myth - The Book App**
 
+![Screenshot of game's title page](./src/assets/images/title_page_screenshot_myth.png)
+
 Myth targets readers who desire a simplified experience of the book tracking app.
 
 There are only three shelves: your TBR, your current library, and your archive of read books.
@@ -22,9 +24,13 @@ In fulfillment of the second coding bootcamp project to build a React applicatio
 
 Begin your reading journey by "logging in" to your account.
 
+![Screenshot of search page](./src/assets/images/search_page_screenshot.png)
+
 Search books by title or author and add them to the respective shelves: TBR for to-be-read, library for your current reads, and archive for read books.
 
-See how I planned this game [here](https://miro.com/app/board/uXjVKrudW3Y=/?share_link_id=385691609527).
+![Screenshot of home page](./src/assets/images/homepage_screenshot.png)
+
+See how I planned this app [here](https://miro.com/app/board/uXjVKrudW3Y=/?share_link_id=385691609527).
 
 ## Attributions & Credits
 

@@ -8,9 +8,7 @@
 .image-buttons {
     display: flex;
     flex-direction: column;
-    /* Stack the image and buttons vertically */
     align-items: center;
-    /* Center the image and buttons */
 }
 
 .text-info {
@@ -20,4 +18,8 @@
 
 .text-info h2 {
     margin-top: 0;
+}
+
+.text-info p {
+    text-wrap: balance;
 }

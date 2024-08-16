@@ -13,7 +13,7 @@ export default function LibraryShelf({ books = [] }) {
   return (
     <div id="libraryshelfcontainer">
       {books.slice(0,3).map((book, index) => (
-        <div key={index}>
+        <div key={index} id="book-item">
           <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
           <h2>{book.fields.title}</h2>
           <h3>by {book.fields.author}</h3>

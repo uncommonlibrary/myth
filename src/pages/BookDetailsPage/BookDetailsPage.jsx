@@ -99,7 +99,7 @@ export default function BookDetailsPage() {
               ? "Added!"
               : "Add to TBR"}
           </button>
-          <br/>
+          <br />
           <button onClick={() => handleAddBookToLibrary(result.docs[0])}>
             {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToLibrary
               ? "Added!"

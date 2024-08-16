@@ -3,9 +3,14 @@
     flex-wrap: wrap;
     justify-content: space-around;
     gap: 20px;
+    margin-right: 55%;
 }
 
 #libraryshelfcontainer h3 {
     font-style: normal;
     font-size: 1.2rem;
+}
+
+#libraryshelfcontainer h2 {
+    text-align: left;
 }
