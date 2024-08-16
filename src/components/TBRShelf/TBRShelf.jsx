@@ -1,23 +1,25 @@
-export default function TBRShelf({books = []}) {
+import "./TBRShelf.css";
+
+export default function TBRShelf({ books = [] }) {
   const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
-    if (books.length === 0) {
-      return (
-        <>
-          <p>Start your reading journey by adding some to-reads!</p>
-        </>
-      );
-    }
+  if (books.length === 0) {
+    return (
+      <>
+        <p>Start your reading journey by adding some to-reads!</p>
+      </>
+    );
+  }
 
   return (
-    <>
-      {books.map((book, index) => (
+    <div id="tbrshelfcontainer">
+      {books.slice(0, 3).map((book, index) => (
         <div key={index}>
           <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
-          <h2>Title: {book.fields.title}</h2>
-          <h3>Author: {book.fields.author}</h3>
+          <h2>{book.fields.title}</h2>
+          <h3>by {book.fields.author}</h3>
         </div>
       ))}
-    </>
+    </div>
   );
 }

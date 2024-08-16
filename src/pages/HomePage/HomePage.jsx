@@ -5,6 +5,7 @@ import ArchiveShelf from "../../components/ArchiveShelf/ArchiveShelf";
 import TBRShelf from "../../components/TBRShelf/TBRShelf";
 import LibraryShelf from "../../components/LibraryShelf/LibraryShelf";
 import { useEffect, useState } from "react";
+import "./HomePage.css";
 
 const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201"; //url for user name
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
@@ -59,17 +60,17 @@ export default function HomePage() {
   }, []);
 
   return (
-    <>
+    <div id="home-container">
       <Navbar />
-      <SearchBar />
       <h1>Welcome, {name}!</h1>
       <h3>What are you reading today?</h3>
+      <SearchBar />
       <h1>Your Library</h1>
       <LibraryShelf books={books.library} />
       <h1>TBR Shelf</h1>
       <TBRShelf books={books.tbr} />
       <h1>Your Archive</h1>
       <ArchiveShelf books={books.archive} />
-    </>
+    </div>
   );
 }

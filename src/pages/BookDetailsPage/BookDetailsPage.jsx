@@ -7,6 +7,7 @@ import {
 } from "../../services/bookDetailsService";
 import { useLocation } from "react-router-dom";
 import { addToTBR, addToLibrary } from "../../services/tbrService.js";
+import "./BookDetailsPage.css";
 
 const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
@@ -80,67 +81,76 @@ export default function BookDetailsPage() {
       <Navbar />
       <SearchBar />
       <h1>Book Details</h1>
-      {/* <img src={`${COVER_URL}${result.docs[0]?.cover_i}.jpg`} /> */}
-      <img
-        src={
-          `${COVER_URL}${result.docs[0]?.cover_i}.jpg`
-            ? `${COVER_URL}${result.docs[0]?.cover_i}.jpg`
-            : null
-        }
-        alt={`${result.docs[0]?.title} cover`}
-      />
-      <p>{`${result.docs[0]?.cover_i}` ? "" : "No cover image available"}</p>
-      <h2>{result.docs[0]?.title}</h2>
-      <h3>by {result.docs[0]?.author_name[0]}</h3>
-      <p>
-        {bookDetails?.description?.value ??
-          bookDetails?.description ??
-          "No description available"}
-      </p>
-      <p>
-        <b>Genre: </b>
-      </p>
-      {result.docs[0]?.subject?.length > 0
-        ? result.docs[0]?.subject?.slice(0, 5)?.map((genre, index) => (
-            <div key={index}>
-              {genre}
-              {index < result.docs[0]?.subject?.slice(0, 5)?.length - 1 && ","}
-            </div>
-          ))
-        : "No information available"}
+      <div className="book-info">
+        <div className="image-buttons">
+          <img
+            src={
+              `${COVER_URL}${result.docs[0]?.cover_i}.jpg`
+                ? `${COVER_URL}${result.docs[0]?.cover_i}.jpg`
+                : null
+            }
+            alt={`${result.docs[0]?.title} cover`}
+          />
+          <p>
+            {`${result.docs[0]?.cover_i}` ? "" : "No cover image available"}
+          </p>
+          <button onClick={() => handleAddBookToTBR(result.docs[0])}>
+            {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToTBR
+              ? "Added!"
+              : "Add to TBR"}
+          </button>
+          <br/>
+          <button onClick={() => handleAddBookToLibrary(result.docs[0])}>
+            {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToLibrary
+              ? "Added!"
+              : "Add to Library"}
+          </button>
+        </div>
+        <div className="text-info">
+          <h2>{result.docs[0]?.title}</h2>
+          <h3>by {result.docs[0]?.author_name[0]}</h3>
+          <p>
+            {bookDetails?.description?.value ??
+              bookDetails?.description ??
+              "No description available"}
+          </p>
+          <p>
+            <b>Genre: </b>
+          </p>
+          {result.docs[0]?.subject?.length > 0
+            ? result.docs[0]?.subject?.slice(0, 5)?.map((genre, index) => (
+                <div key={index}>
+                  {genre}
+                  {index < result.docs[0]?.subject?.slice(0, 5)?.length - 1 &&
+                    ","}
+                </div>
+              ))
+            : "No information available"}
 
-      <p>
-        <b>Average rating: </b>
-        {result.docs[0]?.ratings_average !== undefined &&
-        result.docs[0]?.ratings_average !== null
-          ? Number(result.docs[0]?.ratings_average).toFixed(2) +
-            " out of 5 stars ⭐"
-          : "No information available"}
-      </p>
-      <p>
-        <b>First published: </b>
-        {result.docs[0]?.first_publish_year !== undefined &&
-        result.docs[0]?.first_publish_year !== null
-          ? result.docs[0]?.first_publish_year
-          : "No information available"}
-      </p>
-      <p>
-        <b>Length: </b>
-        {result.docs[0]?.number_of_pages_median !== undefined &&
-        result.docs[0]?.number_of_pages_median !== null
-          ? result.docs[0]?.number_of_pages_median
-          : "No information available"}
-      </p>
-      <button onClick={() => handleAddBookToTBR(result.docs[0])}>
-        {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToTBR
-          ? "Added!"
-          : "Add to TBR"}
-      </button>
-      <button onClick={() => handleAddBookToLibrary(result.docs[0])}>
-        {bookStatus[result.docs[0]?.edition_key[0]]?.isAddedToLibrary
-          ? "Added!"
-          : "Add to Library"}
-      </button>
+          <p>
+            <b>Average rating: </b>
+            {result.docs[0]?.ratings_average !== undefined &&
+            result.docs[0]?.ratings_average !== null
+              ? Number(result.docs[0]?.ratings_average).toFixed(2) +
+                " out of 5 stars ⭐"
+              : "No information available"}
+          </p>
+          <p>
+            <b>First published: </b>
+            {result.docs[0]?.first_publish_year !== undefined &&
+            result.docs[0]?.first_publish_year !== null
+              ? result.docs[0]?.first_publish_year
+              : "No information available"}
+          </p>
+          <p>
+            <b>Length: </b>
+            {result.docs[0]?.number_of_pages_median !== undefined &&
+            result.docs[0]?.number_of_pages_median !== null
+              ? result.docs[0]?.number_of_pages_median
+              : "No information available"}
+          </p>
+        </div>
+      </div>
     </>
   );
 }

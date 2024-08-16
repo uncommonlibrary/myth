@@ -1,3 +1,5 @@
+import "./LibraryShelf.css";
+
 export default function LibraryShelf({ books = [] }) {
   const COVER_URL = "https://covers.openlibrary.org/b/id/";
 
@@ -9,14 +11,14 @@ export default function LibraryShelf({ books = [] }) {
     )
   }
   return (
-    <>
-      {books.map((book, index) => (
+    <div id="libraryshelfcontainer">
+      {books.slice(0,3).map((book, index) => (
         <div key={index}>
           <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
-          <h2>Title: {book.fields.title}</h2>
-          <h3>Author: {book.fields.author}</h3>
+          <h2>{book.fields.title}</h2>
+          <h3>by {book.fields.author}</h3>
         </div>
       ))}
-    </>
+    </div>
   );
 }

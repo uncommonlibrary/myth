@@ -42,6 +42,8 @@
 /* Tufte CSS styles */
 html {
     font-size: 15px;
+    width: 100%;
+    background-color: #fffff8;
 }
 
 body {
@@ -280,7 +282,7 @@ a:link::-moz-selection {
 
 /* Sidenotes, margin notes, figures, captions */
 img {
-    max-width: 100%;
+    max-width: 180px;
 }
 
 .sidenote,

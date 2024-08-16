@@ -1,33 +1,47 @@
 import StartingNav from "../../components/Navbar/StartingNav";
 import { Link } from "react-router-dom";
+import "./MainPage.css";
 
 export default function MainPage() {
   return (
-    <>
+    <div id="main-container">
       <StartingNav />
-      <h1>Maintain your own library and share them with friends.</h1>
-      <h3>A simple reading web app for readers who just want to log stuff.</h3>
-      <h3>No clunk. Just books.</h3>
-      <button>
-        <Link to="/login">Get started</Link>
-      </button>
+      <div className="main-banner">
+        <h1>Maintain your own library and share them with friends.</h1>
+        <h3 id="description">
+          A simple reading web app for readers who just want to log stuff.
+        </h3>
+        <h3>No clunk. Just books.</h3>
+        <button>
+          <Link to="/login">Get started</Link>
+        </button>
+      </div>
       <div className="features">
         <div id="feature1">
-          <p>image</p>
+          <img src="/src/assets/images/trackreading.png" />
           <h2>Track your reading</h2>
-          <h3>insert description</h3>
+          <h3>
+            Monitor your reading progress and mark books as read, currently
+            reading, or to-be-read.
+          </h3>
         </div>
         <div id="feature2">
-          <p>image</p>
+          <img src="/src/assets/images/write_notes.png" />
           <h2>Write notes</h2>
-          <h3>insert description</h3>
+          <h3>
+            Pen your thoughts and highlights as you read, keeping all your
+            annotations in once place.
+          </h3>
         </div>
         <div id="feature3">
-          <p>image</p>
+          <img src="/src/assets/images/sharelibrary.png" />
           <h2>Share your library</h2>
-          <h3>insert description</h3>
+          <h3>
+            Showcase your collection with your friends, and discover what others
+            are reading.
+          </h3>
         </div>
       </div>
-    </>
+    </div>
   );
 }

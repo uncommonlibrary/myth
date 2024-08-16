@@ -1,0 +1,11 @@
+#archiveshelfcontainer {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    gap: 20px;
+}
+
+#archiveshelfcontainer h3 {
+    font-style: normal;
+    font-size: 1.2rem;
+}

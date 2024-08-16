@@ -3,21 +3,22 @@ import "./Navbar.css";
 
 export default function Navbar () {
   return (
-    <nav>
-      <ul>
-        <li>
+    <div id="main-nav">
+      <h1>Myth</h1>
+      <ul id="main-links">
+        <li id="homelink">
           <Link to="/home">Home</Link>
         </li>
-        <li>
+        <li id="tbrlink">
           <Link to="/shelves/tbr">TBR</Link>
         </li>
-        <li>
+        <li id="librarylink">
           <Link to="/shelves/library">Library</Link>
         </li>
-        <li>
+        <li id="archivelink">
           <Link to="/shelves/archive">Archive</Link>
         </li>
       </ul>
-    </nav>
+    </div>
   );
 };

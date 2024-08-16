@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import "./LoginPage.css";
 
 const url = "https://api.airtable.com/v0/app39xSNujiUrbaTR/Table%201";
 const urlKey = `${import.meta.env.VITE_APIKEY}`;
@@ -45,7 +46,7 @@ export default function LoginPage() {
   };
 
   return (
-    <>
+    <div id="login">
       <h1>Start building your library.</h1>
       <h2>Tracking books made easy.</h2>
       <form onSubmit={handleSubmit}>
@@ -63,6 +64,6 @@ export default function LoginPage() {
         <br />
         <button type="submit">{isSubmitted ? "Submitted!" : "Join"}</button>
       </form>
-    </>
+    </div>
   );
 }

@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { deleteFromTBR } from "../../services/tbrService";
+import "./ArchivePage.css";
 
 const urlArchive = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyArchive = `${import.meta.env.VITE_APIKEY}`;
@@ -49,26 +50,26 @@ export default function ArchivePage() {
   };
 
   return (
-    <>
+    <div id="archive-container">
       <Navbar />
       <SearchBar />
       <h1>Your Archive</h1>
       {books.length > 0 ? (
-        <>
+        <div id="archivebookcontainer">
           {books.map((book, index) => (
-            <div key={index}>
+            <div key={index} className="book-item">
               <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
-              <h2>Title: {book.fields.title}</h2>
-              <h3>Author: {book.fields.author}</h3>
+              <h2>{book.fields.title}</h2>
+              <h3>by {book.fields.author}</h3>
               <button onClick={() => handleDelete(book.id)}>
                 {bookStatus[book.id]?.isDeleted ? "Deleted!" : "Delete"}
               </button>
             </div>
           ))}
-        </>
+        </div>
       ) : (
         <p>Read more to populate this space!</p>
       )}
-    </>
+    </div>
   );
 }

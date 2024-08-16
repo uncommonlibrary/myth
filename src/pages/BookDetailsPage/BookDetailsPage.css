@@ -1,0 +1,23 @@
+.book-info {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 7%;
+}
+
+.image-buttons {
+    display: flex;
+    flex-direction: column;
+    /* Stack the image and buttons vertically */
+    align-items: center;
+    /* Center the image and buttons */
+}
+
+.text-info {
+    display: flex;
+    flex-direction: column;
+}
+
+.text-info h2 {
+    margin-top: 0;
+}

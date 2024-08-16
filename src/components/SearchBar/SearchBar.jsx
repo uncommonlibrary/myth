@@ -18,7 +18,7 @@ export default function SearchBar() {
   };
   return (
     <>
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} id="search-bar">
         <div className="wrapper">
           <label htmlFor="search-bar">
             <input

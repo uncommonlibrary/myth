@@ -1,3 +1,9 @@
+/* nav {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+}
+
 ul {
     list-style-type: none;
     margin: 0;
@@ -8,4 +14,33 @@ ul {
 
 ul li {
     padding: 14px 20px;
+}
+
+nav h1 {
+    margin-top: 3%;
+    margin-right: 63%;
+} */
+
+#main-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 15%;
+    padding: 10px;
+}
+
+#main-nav h1 {
+    padding-right: 10%;
+}
+
+#main-links {
+    list-style-type: none;
+    margin-left: 35%;
+    display: flex;
+    justify-content: space-around;
+}
+
+#main-links li {
+    margin-left: 15%;
+    margin-top: 7%;
 }

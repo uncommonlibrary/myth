@@ -2,6 +2,7 @@ import Navbar from "../../components/Navbar/Navbar";
 import SearchBar from "../../components/SearchBar/SearchBar";
 import { useState, useEffect } from "react";
 import { deleteFromTBR, moveToLibrary } from "../../services/tbrService";
+import "./TBRPage.css";
 
 const urlTBR = "https://api.airtable.com/v0/app80K0OB0akZ36aN/Table%201";
 const urlKeyTBR = `${import.meta.env.VITE_APIKEY}`;
@@ -59,17 +60,17 @@ export default function TBRPage() {
   };
 
   return (
-    <>
+    <div id="tbr-container">
       <Navbar />
       <SearchBar />
       <h1>TBR Shelf</h1>
       {books.length > 0 ? (
-        <>
+        <div id="tbrbookcontainer">
           {books.map((book, index) => (
-            <div key={index}>
+            <div key={index} className="book-item">
               <img src={`${COVER_URL}${book.fields.coverImage}.jpg`} />
-              <h2>Title: {book.fields.title}</h2>
-              <h3>Author: {book.fields.author}</h3>
+              <h2>{book.fields.title}</h2>
+              <h3>by {book.fields.author}</h3>
               <button onClick={() => handleMoveToLibrary(book.id)}>
                 {bookStatus[book.id]?.isReading
                   ? "Moved to Library!"
@@ -80,10 +81,10 @@ export default function TBRPage() {
               </button>
             </div>
           ))}
-        </>
+        </div>
       ) : (
         <p>*crickets*</p>
       )}
-    </>
+    </div>
   );
 }

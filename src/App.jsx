@@ -25,7 +25,6 @@ export default function App() {
   //INSERT COMPONENTS BELOW
   return (
     <>
-      <h1>MYTH</h1>
       <Routes>
         <Route path="/" element={<MainPage />} />
         <Route path="/login" element={<LoginPage />} />
